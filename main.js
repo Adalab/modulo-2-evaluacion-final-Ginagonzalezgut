@@ -4,16 +4,26 @@ const buttonSearch = document.querySelector(".js-button-search");
 const inputSearch = document.querySelector(".js-input-search");
 const results = document.querySelector(".js-results");
 let series = [];
-const favoriteSeriesList = [];
+let favoriteSeriesList = [];
 const FavoriteSeriesDiv = document.querySelector(".js-favorites-series");
 
 const renderSeries = (list, div) => {
   div.innerHTML = "";
   for (const serie of list) {
-    div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
-   <h1>${serie.title}</h1> 
-   <img src="${serie.images.jpg.large_image_url}" alt="${serie.title}">
-  </div>`;
+    if (
+      serie.images.jpg.large_image_url ===
+      "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+    ) {
+      div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
+      <h1 class="serie-title">${serie.title}</h1> 
+      <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${serie.title}">
+    </div>`;
+    } else {
+      div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
+    <h1 class="serie-title">${serie.title}</h1> 
+    <img src="${serie.images.jpg.large_image_url}" alt="${serie.title}">
+    </div>`;
+    }
   }
 
   const seriesDom = document.querySelectorAll(".js-serie");

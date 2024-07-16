@@ -1,14 +1,41 @@
 .title {
   padding-top: 50px;
-  padding-left: 50px;
+  padding-left: 40px;
 }
 
 .input-search {
   width: 300px;
-  margin-left: 50px;
+  margin-left: 40px;
 }
 
 .button-search {
   width: 150px;
   margin-left: 20px;
+}
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 30px;
+}
+.results-series {
+  font-size: 16px;
+  color: rgb(8, 4, 4);
+  background-color: rgb(200, 208, 214);
+  padding: 30px;
+  border-radius: 30px;
+  flex: 1;
+}
+.favorite-series {
+  background-color: lightgrey;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  padding: 30px;
+  border-radius: 30px;
+  flex: 1;
+}
+img {
+  width: 200px;
 }

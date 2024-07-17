@@ -9,6 +9,7 @@
 .title {
   font-weight: 400;
   font-size: 24px;
+  margin-bottom: 16px;
 }
 
 .input-search {
@@ -77,4 +78,5 @@ img {
 .serie-title {
   font-size: 16px;
   padding-top: 20px;
+  margin-bottom: 14px;
 }

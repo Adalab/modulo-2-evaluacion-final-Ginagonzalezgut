@@ -42,6 +42,7 @@ const handleClickSearch = (event) => {
     .then((data) => {
       series = data.data;
       renderSeries(series, results);
+      inputSearch.value = "";
     });
 };
 

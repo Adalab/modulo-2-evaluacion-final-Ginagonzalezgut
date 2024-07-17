@@ -9,6 +9,7 @@ const FavoriteSeriesDiv = document.querySelector(".js-favorites-series");
 
 const renderSeries = (list, div) => {
   div.innerHTML = "";
+  console.log(list);
   for (const serie of list) {
     if (
       serie.images.jpg.large_image_url ===
@@ -17,11 +18,17 @@ const renderSeries = (list, div) => {
       div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
       <h1 class="serie-title">${serie.title}</h1> 
       <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${serie.title}">
+      <button class="js-icondeleted" id="${serie.mal_id}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>`;
     } else {
       div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
     <h1 class="serie-title">${serie.title}</h1> 
     <img src="${serie.images.jpg.large_image_url}" alt="${serie.title}">
+    <button class="js-icondeleted" id="${serie.mal_id}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>`;
     }
   }
@@ -29,6 +36,11 @@ const renderSeries = (list, div) => {
   const seriesDom = document.querySelectorAll(".js-serie");
   for (const serieDom of seriesDom) {
     serieDom.addEventListener("click", handleClickSerie);
+  }
+
+  const iconsDeleted = document.querySelectorAll(".js-icondeleted");
+  for (const iconDeleted of iconsDeleted) {
+    iconDeleted.addEventListener("click", handleClickDeleted);
   }
 };
 
@@ -68,9 +80,28 @@ const favoriteSeriesLocalStorage = JSON.parse(
   localStorage.getItem("favoriteseries")
 );
 
-console.log(favoriteSeriesLocalStorage);
-
 if (favoriteSeriesLocalStorage) {
   favoriteSeriesList = favoriteSeriesLocalStorage;
   renderSeries(favoriteSeriesList, FavoriteSeriesDiv);
 }
+
+function handleClickDeleted(event) {
+  event.preventDefault();
+  const serieClickId = event.currentTarget.id;
+  const position = favoriteSeriesList.findIndex((serie) => {
+    return parseInt(serieClickId) === serie.mal_id;
+  });
+  console.log(position);
+  const deletedSerie = favoriteSeriesList.splice(position, 1);
+  renderSeries(favoriteSeriesList, FavoriteSeriesDiv);
+}
+
+const resetButton = document.querySelector(".js-button-reset");
+
+function handleClickReset(event) {
+  event.preventDefault();
+  localStorage.removeItem("favoriteseries");
+  favoriteSeriesList = [];
+  renderSeries(favoriteSeriesList, FavoriteSeriesDiv);
+}
+resetButton.addEventListener("click", handleClickReset);

@@ -60,5 +60,17 @@ function handleClickSerie(event) {
   if (indexSeriesinFavorite === -1) {
     favoriteSeriesList.push(serieSelect);
     renderSeries(favoriteSeriesList, FavoriteSeriesDiv);
+    localStorage.setItem("favoriteseries", JSON.stringify(favoriteSeriesList));
   }
+}
+
+const favoriteSeriesLocalStorage = JSON.parse(
+  localStorage.getItem("favoriteseries")
+);
+
+console.log(favoriteSeriesLocalStorage);
+
+if (favoriteSeriesLocalStorage) {
+  favoriteSeriesList = favoriteSeriesLocalStorage;
+  renderSeries(favoriteSeriesList, FavoriteSeriesDiv);
 }

@@ -17,18 +17,12 @@ const renderSeries = (list, div) => {
     ) {
       div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
       <h1 class="serie-title">${serie.title}</h1> 
-      <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${serie.title}">
-      <button class="js-icondeleted" id="${serie.mal_id}">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${serie.title}"> 
     </div>`;
     } else {
       div.innerHTML += `<div class="js-serie" id="${serie.mal_id}"> 
     <h1 class="serie-title">${serie.title}</h1> 
     <img src="${serie.images.jpg.large_image_url}" alt="${serie.title}">
-    <button class="js-icondeleted" id="${serie.mal_id}">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
     </div>`;
     }
   }
@@ -38,10 +32,6 @@ const renderSeries = (list, div) => {
     serieDom.addEventListener("click", handleClickSerie);
   }
 
-  const iconsDeleted = document.querySelectorAll(".js-icondeleted");
-  for (const iconDeleted of iconsDeleted) {
-    iconDeleted.addEventListener("click", handleClickDeleted);
-  }
 };
 
 const handleClickSearch = (event) => {
